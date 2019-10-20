@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+
+	<title>Calendar Example</title>
+</head>
+
+<body>
+
+	<div class="code-wrapper">
+		<button id = "close_btn">&times;</button>
+		<div class="code-content">
+			<pre>
+				<code>
+	const month_names = [
+	"January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December"
+	];
+	const week_day = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+	const end_month = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+	const cal = $('#cal');
+
+	function CAL()
+	{
+		var year = $('#year').val();
+		var start = $('#start').val();
+		cal.html('');
+
+		if(year != '' && start != '')
+			Calendar(year, start);
+	}
+
+	function Calendar(year, start)
+	{
+		let str = ""
+		let is_leap = false;
+
+		//Check the leap
+		if((year % 4 === 0)&&(year % 100 != 0) || (year % 400) == 0)
+		{
+			end_month[1] = 29;
+			is_leap = true;
+		}
+
+		for(let i = 0; i &lt; 12; i++)
+		{
+			str += "&lt;table id = 'month_cal'&gt;";
+			str += "&lt;tr&gt;&lt;th colspan = 7 style = 'padding: 10px 20px;'&gt;" + month_names[i] + "  " +  year + "&lt;/tr&gt;&lt;/th&gt;";
+			
+			str += "&lt;tr&gt;";
+			for(let j = 0; j &lt; week_day.length; j++)
+			{
+				str += "&lt;td&gt;&lt;b&gt;" + week_day[j] + "</b></td>";
+			}
+			str += "</tr>"
+
+			str += "<tr>";
+			for(let j = 0; j < start; j++)
+			{
+				str += "<td id = 'days_start'>" + " " + "</td>";
+			}
+
+			for(let j = 0; j < end_month[i]; j++)
+			{
+				if(i == 1 && j === end_month[i] - 1 && is_leap)
+				{
+					str += "<td id = 'days_leap'>" + (j+1) + "</td>";
+					start++;
+					break;   
+				}
+
+				str += "<td id = 'days'>" + (j+1) + "</td>";
+				start++;
+
+				if(start === 7)
+				{
+					start = 0;
+					str += "</tr>";
+					str += "<tr>";
+				}
+			}
+
+			if(start > 0)
+			{
+				for(let j = 0; j < 7 - start; j++)
+				{
+					str += "<td id = 'days_left'>" + "&nbsp;" + "</td>";
+				}
+			}
+			str += "</tr>";  
+			str += "</table>";
+		}
+		cal.append(str);
+	}
+				</code>
+			</pre>
+		</div>
+	</div>
+
+	<div class = "cal-option-wrapper">
+		<h1>Calendar</h1>
+		<div class = "cal-option-input-wrapper">
+			<caption>YEAR:&nbsp;</caption>
+			<input autocomplete="off" class = "arg-box" id = "year" type = "text" placeholder="Input Year"></input>&nbsp;&nbsp;
+			<caption>START:&nbsp;</caption>
+			<input autocomplete="off" class = "arg-box" id = "start" type = "text" placeholder="Input first day of the year"></input>&nbsp;&nbsp;
+			<span class="cal-option-btn">
+				<button id = "print">PRINT</button>
+				<!-- <button id = "source">SOURCE CODE</button> -->
+			</span>
+		</div>
+		<br>
+		<div class = "cal-option-Highlighter">
+			<font><font class = "palette" id = "orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>&nbsp;: Start</font>&nbsp;&nbsp;&nbsp;
+			<font><font class = "palette" id = "green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>&nbsp;: Leap Year</font>
+			<font><font class = "palette" id = "yellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>&nbsp;: Day of the week for the first day of the year (1 for Mon, 2 for Tue, etc.)</font>
+		</div>
+	</div>
+	<p></p>
+	<div id = "calendar"><br><br><p>*The output is displayed here.</p></div>
+	<script src="./js/cal.js"></script>
+</body>
+</html>
