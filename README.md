@@ -4,16 +4,27 @@
 
 ## JavaScirpt Code
 
-```c
-int find_largest(int a[], int n)
-{
-  int i, max;
+```javascript
 
-  max = a[0];
-  for(i = 1; i < n; i++)
-    if(a[i] > max)
-      max = a[i];
-  return max;
+const month_names = ["January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"
+];
+const week_day = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+const end_month = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+// 달력을 추가할 요소를 변수로 저장
+const cal = $('#calendar');
+
+// 사용자에게 입력을 받아 Calendar의 매개변수로 넘기고 Calendar를 호출
+function CAL()
+{
+  ...
+}
+
+// 사용자에게 입력받은 값을 바탕으로 달력을 출력한다. 
+function Calendar(year, start)
+{
+  ...
 }
 ```
 
