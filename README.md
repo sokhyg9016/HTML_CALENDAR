@@ -30,4 +30,4 @@ function Calendar(year, start)
 
 
 ## preview
-![alt text](https://github.com/sokhyg9016/HTML_CALENDAR/blob/master/calendar_js/preview.JPG)
+![alt text](https://github.com/sokhyg9016/HTML_CALENDAR/blob/master/calendar_js/dist/Preview.JPG)
